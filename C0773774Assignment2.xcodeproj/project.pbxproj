@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1874BF0823D762FD0002C3D4 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1874BF0723D762FD0002C3D4 /* FilterViewController.swift */; };
 		18AD836223D5295700D94FA9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AD836123D5295700D94FA9 /* AppDelegate.swift */; };
 		18AD836423D5295700D94FA9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AD836323D5295700D94FA9 /* SceneDelegate.swift */; };
 		18AD836623D5295700D94FA9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AD836523D5295700D94FA9 /* ViewController.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1874BF0723D762FD0002C3D4 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		18AD835E23D5295700D94FA9 /* C0773774Assignment2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = C0773774Assignment2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18AD836123D5295700D94FA9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18AD836323D5295700D94FA9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 				18AD836523D5295700D94FA9 /* ViewController.swift */,
 				18AD837823D52FD600D94FA9 /* VCTableViewCell.swift */,
 				18AD837C23D53A2D00D94FA9 /* DetailViewController.swift */,
+				1874BF0723D762FD0002C3D4 /* FilterViewController.swift */,
 				18AD836723D5295700D94FA9 /* Main.storyboard */,
 				18AD836D23D5295900D94FA9 /* Assets.xcassets */,
 				18AD836F23D5295900D94FA9 /* LaunchScreen.storyboard */,
@@ -232,6 +235,7 @@
 				18AD836623D5295700D94FA9 /* ViewController.swift in Sources */,
 				18D014C423D688A1002EEBB1 /* PersistenceManager.swift in Sources */,
 				18AD836223D5295700D94FA9 /* AppDelegate.swift in Sources */,
+				1874BF0823D762FD0002C3D4 /* FilterViewController.swift in Sources */,
 				18AD836C23D5295800D94FA9 /* C0773774Assignment2.xcdatamodeld in Sources */,
 				18AD837D23D53A2D00D94FA9 /* DetailViewController.swift in Sources */,
 				18AD837923D52FD600D94FA9 /* VCTableViewCell.swift in Sources */,

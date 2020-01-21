@@ -2,7 +2,7 @@
 //  Tasks+CoreDataProperties.swift
 //  
 //
-//  Created by Nitin on 20/01/20.
+//  Created by Nitin on 21/01/20.
 //
 //
 
@@ -17,9 +17,10 @@ extension Tasks {
     }
 
     @NSManaged public var date: String?
-    @NSManaged public var totalDays: String?
+    @NSManaged public var daysAdd: String?
     @NSManaged public var descrip: String?
     @NSManaged public var title: String?
-    @NSManaged public var daysAdd: String?
+    @NSManaged public var totalDays: String?
+    @NSManaged public var timestamp: String?
 
 }

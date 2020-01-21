@@ -4,10 +4,11 @@
         <attribute name="date" optional="YES" attributeType="String"/>
         <attribute name="daysAdd" optional="YES" attributeType="String"/>
         <attribute name="descrip" optional="YES" attributeType="String"/>
+        <attribute name="timestamp" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="totalDays" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="Tasks" positionX="-63" positionY="-18" width="128" height="118"/>
+        <element name="Tasks" positionX="-63" positionY="-18" width="128" height="133"/>
     </elements>
 </model>

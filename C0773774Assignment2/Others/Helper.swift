@@ -9,6 +9,15 @@
 import Foundation
 import UIKit
 
+
+class Singelton {
+    
+    static let sharedObj = Singelton()
+    
+    var sortByTitle: Bool?
+    var sortByDate: Bool?
+}
+
 extension UIViewController {
     
     ///

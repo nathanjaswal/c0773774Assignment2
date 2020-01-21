@@ -9,10 +9,11 @@
 import UIKit
 import CoreData
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UISearchBarDelegate {
     
     // MARK: - Properties
     let persistent = PersistenceManager.shared
+    var tasksListOrignal: [Tasks]!
     var tasksList: [Tasks]!
     var task: Tasks?
     
@@ -31,6 +32,14 @@ class ViewController: UIViewController {
     }
     
     // MARK: - Action
+    @IBAction func filterBtnClicked(_ sender: Any) {
+        // navigate...
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "FilterViewController") as! FilterViewController
+        
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     @IBAction func addBtnClicked(_ sender: Any) {
         // navigate...
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -45,7 +54,16 @@ class ViewController: UIViewController {
     func initViews() {
         //
         persistent.fetch(type: Tasks.self) { (tasks) in
-            self.tasksList = tasks
+            self.tasksListOrignal = tasks
+            if(Singelton.sharedObj.sortByTitle == true){
+               self.tasksListOrignal = tasks.sorted { $0.title!.lowercased() < $1.title!.lowercased() }
+            }
+            if(Singelton.sharedObj.sortByDate == true){
+                self.tasksListOrignal = tasks.sorted {
+                    Double($0.timestamp! ?? "0")! < Double($1.timestamp! ?? "0")! }
+            }
+            
+            self.tasksList = self.tasksListOrignal
             self.tableView.reloadData()
             
         }
@@ -53,10 +71,6 @@ class ViewController: UIViewController {
     
     private var cellClass: VCTableViewCell.Type {
         return VCTableViewCell.self
-    }
-    
-    func addDay() {
-        
     }
     
     func deleteTask() {
@@ -140,6 +154,63 @@ class ViewController: UIViewController {
         }else{
             self.showAlert(title: "C0773774", message: "Error!")
         }
+        
+    }
+    
+    // MARK: - UISearchBar
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+         searchBar.setShowsCancelButton(true, animated: true)
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        searchBar.resignFirstResponder()
+        searchBar.endEditing(true)
+  
+        self.tasksList =  self.tasksListOrignal
+        self.tableView.reloadData()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        if searchBar.text != ""{
+            var filtered: [Tasks]!
+            //print(wishListArr)
+            filtered = tasksListOrignal.filter({ (task) -> Bool in
+                
+                let tmpStr = task.title
+                
+                let range1 = tmpStr?.range(of: searchBar.text!)
+                let range2 = tmpStr?.lowercased().range(of: searchBar.text!)
+                let range3 = tmpStr?.uppercased().range(of: searchBar.text!)
+            
+                let tmpStr1 = task.descrip
+                               
+                let range4 = tmpStr1?.range(of: searchBar.text!)
+                let range5 = tmpStr1?.lowercased().range(of: searchBar.text!)
+                let range6 = tmpStr1?.uppercased().range(of: searchBar.text!)
+                
+                return range1 != nil || range2 != nil || range3 != nil || range4 != nil || range5 != nil || range6 != nil
+
+                
+            }) as [Tasks]
+            
+            if(filtered.count > 0){
+                self.tasksList = filtered
+            }else{
+                self.tasksList = [Tasks]()
+            }
+            
+            self.tableView.reloadData()
+        }
+        
+        searchBar.resignFirstResponder()
+       
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
     }
 }

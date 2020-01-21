@@ -42,7 +42,12 @@ class DetailViewController: UIViewController {
         //
         if checkValidation() {
             if editBool {
-                updateToCoreData()
+                if Int(totalDaysTextField.text!) ?? 0 < Int((task?.daysAdd!)!) ?? 0 {
+                    updateToCoreData(comp: true)
+               } else {
+                    updateToCoreData(comp: false)
+               }
+
             }else{
                 saveToCoreData()
             }
@@ -127,6 +132,8 @@ class DetailViewController: UIViewController {
         //
         let user = Tasks(context: persistent.context)
         user.date = currentDate()
+        let timestamp = NSDate().timeIntervalSince1970
+        user.timestamp = String(format: "%f",timestamp)
         user.daysAdd = "0"
         user.descrip = descTextView.text
         user.title = titleTextField.text
@@ -168,7 +175,7 @@ class DetailViewController: UIViewController {
     }
     
     
-    func updateToCoreData() {
+    func updateToCoreData(comp: Bool) {
         if checkForUpdate() {
             persistent.fetch(type: Tasks.self) { (tasks) in
                 for ntask in tasks {
@@ -176,7 +183,14 @@ class DetailViewController: UIViewController {
                         ntask.date = self.currentDate()
                         ntask.descrip = self.descTextView.text
                         ntask.title = self.titleTextField.text
-                        ntask.totalDays = self.totalDaysTextField.text
+                        if comp {
+                            ntask.totalDays = self.task?.daysAdd
+                        } else{
+                            ntask.totalDays = self.totalDaysTextField.text
+                        }
+                        
+                        let timestamp = NSDate().timeIntervalSince1970
+                        ntask.timestamp = String(format: "%f",timestamp)
                         do{
                             try self.persistent.context.save()
                             
